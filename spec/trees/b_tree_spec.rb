@@ -1,5 +1,5 @@
 describe BTree do
-  let(:b_tree) { BTree.new(3) } # Ordem 3 para a Árvore B
+  let(:b_tree) { BTree.new(3) }
 
   context '#insert' do
     it 'inserts a value into an empty tree' do
