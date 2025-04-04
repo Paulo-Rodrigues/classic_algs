@@ -3,7 +3,7 @@ RSpec.describe Stack do
 
   describe '#initialize' do
     it 'inicia com uma stack vazia' do
-      expect(stack.is_empty?).to be true
+      expect(stack.empty?).to be true
       expect(stack.size).to eq(0)
     end
   end
@@ -70,14 +70,14 @@ RSpec.describe Stack do
     end
   end
 
-  describe '#is_empty?' do
+  describe '#empty?' do
     it 'retorna true para uma pilha vazia' do
-      expect(stack.is_empty?).to be true
+      expect(stack.empty?).to be true
     end
 
     it 'retorna false para uma pilha com elementos' do
       stack.push(1)
-      expect(stack.is_empty?).to be false
+      expect(stack.empty?).to be false
     end
   end
 
