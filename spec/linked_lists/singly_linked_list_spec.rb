@@ -3,7 +3,7 @@ RSpec.describe Node do
     it 'cria um nó com valor e próximo como nil' do
       node = Node.new(10)
       expect(node.value).to eq(10)
-      expect(node.next).to be_nil
+      expect(node.next_node).to be_nil
     end
   end
 end
