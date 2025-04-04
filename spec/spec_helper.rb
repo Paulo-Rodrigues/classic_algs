@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 dirs = %w[lib]
 
 dirs.each do |dir|
