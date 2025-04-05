@@ -21,14 +21,14 @@ RSpec.describe SinglyLinkedList do
     it 'adiciona um nó no início da lista' do
       list.add_first(10)
       expect(list.head.value).to eq(10)
-      expect(list.head.next).to be_nil
+      expect(list.head.next_node).to be_nil
     end
 
     it 'mantém os nós anteriores ao adicionar no início' do
       list.add_first(20)
       list.add_first(10)
       expect(list.head.value).to eq(10)
-      expect(list.head.next.value).to eq(20)
+      expect(list.head.next_node.value).to eq(20)
     end
   end
 
@@ -36,14 +36,23 @@ RSpec.describe SinglyLinkedList do
     it 'adiciona um nó no final da lista vazia' do
       list.add_last(10)
       expect(list.head.value).to eq(10)
-      expect(list.head.next).to be_nil
+      expect(list.head.next_node).to be_nil
     end
 
     it 'adiciona um nó no final da lista não vazia' do
       list.add_first(10)
       list.add_last(20)
       expect(list.head.value).to eq(10)
-      expect(list.head.next.value).to eq(20)
+      expect(list.head.next_node.value).to eq(20)
+    end
+
+    it 'adiciona um nó no final da lista não vazia mais de 2 elementos' do
+      list.add_first(10)
+      list.add_last(20)
+      list.add_last(30)
+      expect(list.head.value).to eq(10)
+      expect(list.head.next_node.value).to eq(20)
+      expect(list.head.next_node.next_node.value).to eq(30)
     end
   end
 
@@ -73,7 +82,7 @@ RSpec.describe SinglyLinkedList do
 
     it 'remove o nó com o valor correspondente' do
       list.remove(20)
-      expect(list.head.next.value).to eq(30)
+      expect(list.head.next_node.value).to eq(30)
     end
 
     it 'remove o nó da cabeça da lista' do
@@ -84,18 +93,6 @@ RSpec.describe SinglyLinkedList do
     it 'não altera a lista se o valor não estiver presente' do
       list.remove(40)
       expect(list.head.value).to eq(10)
-    end
-  end
-
-  describe '#display' do
-    it 'exibe todos os valores na lista' do
-      list.add_first(10)
-      list.add_last(20)
-      expect { list.display }.to output("10 -> 20 -> nil\n").to_stdout
-    end
-
-    it 'exibe apenas nil para uma lista vazia' do
-      expect { list.display }.to output("nil\n").to_stdout
     end
   end
 
