@@ -3,12 +3,12 @@ describe Deque do
 
   context '#is_empty?' do
     it 'returns true for an empty deque' do
-      expect(deque.is_empty?).to be true
+      expect(deque.empty?).to be true
     end
 
     it 'returns false for a non-empty deque' do
       deque.add_front(1)
-      expect(deque.is_empty?).to be false
+      expect(deque.empty?).to be false
     end
   end
 
@@ -104,7 +104,7 @@ describe Deque do
       deque.add_front(1)
       deque.add_rear(2)
       deque.clear
-      expect(deque.is_empty?).to be true
+      expect(deque.empty?).to be true
       expect(deque.to_array).to eq([])
     end
   end
