@@ -14,6 +14,29 @@ describe BinaryTree do
       expect(tree.root.left.value).to eq(5)
       expect(tree.root.right.value).to eq(15)
     end
+
+    it 'insere nós em subárvores' do
+      tree.insert(10)
+      tree.insert(5)
+      tree.insert(15)
+      tree.insert(3)  # filho esquerdo do 5
+      tree.insert(7)  # filho direito do 5
+      tree.insert(12) # filho esquerdo do 15
+
+      expect(tree.root.left.left.value).to eq(3)   # 5 → 3
+      expect(tree.root.left.right.value).to eq(7)  # 5 → 7
+      expect(tree.root.right.left.value).to eq(12) # 15 → 12
+    end
+
+    it 'não sobrescreve nós existentes' do
+      tree.insert(10)
+      tree.insert(5)
+      tree.insert(5) # Tentativa de inserir o mesmo valor novamente
+
+      # Verifica se a estrutura não foi corrompida
+      expect(tree.root.left.value).to eq(5)
+      expect(tree.root.left.left).to be_nil # Não deve criar um novo nó duplicado
+    end
   end
 
   context '#find' do
@@ -21,6 +44,12 @@ describe BinaryTree do
       tree.insert(10)
       tree.insert(5)
       tree.insert(15)
+    end
+
+    it 'on root' do
+      t = BinaryTree.new
+      t.insert(1)
+      expect(t.find(1)).to be_truthy
     end
 
     it 'encontra um valor existente' do
@@ -68,12 +97,12 @@ describe BinaryTree do
   end
 
   context '#height' do
-    it 'calcula a altura da árvore' do
+    it 'calcula a altura da árvore(número de arestas Cormen ref)' do
       tree.insert(10)
       tree.insert(5)
       tree.insert(15)
       tree.insert(1)
-      expect(tree.height).to eq(3)
+      expect(tree.height).to eq(2)
     end
   end
 
